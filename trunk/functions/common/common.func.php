@@ -21,7 +21,7 @@
 * limitations under the License.
 */
 // 用CURL 请求远端接口
-include_once IR.'config/badwords.php';
+include_once IR.'config/badwords.config.php';
 function call_remote_by_curl($url_str)
 {
     $ch = curl_init();

@@ -7,7 +7,7 @@ date:
 //conn db 1 as users
 $db_flag = 0;
 $my_conn = null;
-function db1(){
+function db_connect(){
     global $config,$db_flag,$my_conn;
     if ($db_flag != 1) {
         $my_conn = mysql_pconnect($config['dbhost1'],$config['dbuser'],$config['dbpwd']);
@@ -16,70 +16,6 @@ function db1(){
         $db_flag = 1;
     }
 
-    return $my_conn;
-}
-
-//conn db 2 as system and so on
-function db2(){
-    global $config,$db_flag,$my_conn;
-    if ($db_flag != 2) {
-        $my_conn = mysql_pconnect("$config[dbhost2]",$config['dbuser'],$config['dbpwd']);
-        mysql_select_db($config['dbdb2'],$my_conn);
-        mysql_query('set names utf8');
-        $db_flag = 2;
-    }
-    return $my_conn;
-}
-
-function db_research(){
-    global $config,$db_flag,$my_conn;
-    if ($db_flag != 2) {
-        $my_conn = mysql_pconnect("$config[dbhost_research]",$config['dbuser'],$config['dbpwd']);
-        mysql_select_db($config['dbdb_research'],$my_conn);
-        mysql_query('set names utf8');
-        $db_flag = 2;
-    }
-    return $my_conn;
-}
-
-function db3(){
-    global $config,$db_flag,$my_conn;
-    if ($db_flag != 3) {
-        $conn = mysql_pconnect("$config[dbhost3]",$config['dbuser'],$config['dbpwd']);
-        mysql_select_db($config['dbdb3'],$conn);
-        mysql_query('set names utf8');
-        $db_flag = 3;
-    }
-    return $my_conn;
-}
-function db4(){
-    global $config,$db_flag,$my_conn;
-    if ($db_flag != 4) {
-        $conn = mysql_pconnect("$config[dbhost4]",$config['dbuser'],$config['dbpwd']);
-        mysql_select_db($config['dbdb4'],$conn);
-        mysql_query('set names utf8');
-        $db_flag = 4;
-    }
-    return $my_conn;
-}
-function db5(){
-    global $config,$db_flag,$my_conn;
-    if ($db_flag != 5) {
-        $conn = mysql_pconnect("$config[dbhost5]",$config['dbuser5'],$config['dbpwd5']);
-        mysql_select_db($config['dbdb5'],$conn);
-        mysql_query('set names utf8');
-        $db_flag = 5;
-    }
-    return $my_conn;
-}
-function db_data(){
-    global $config,$db_flag,$my_conn;
-    if ($db_flag != 5) {
-        $conn = mysql_pconnect("$config[dbhost_data]",$config['dbuser_data'],$config['dbpwd_data']);
-        mysql_select_db($config['dbdb_data'],$conn);
-        mysql_query('set names utf8');
-        $db_flag = 5;
-    }
     return $my_conn;
 }
 
