@@ -36,7 +36,7 @@ base_prepare();
 db_connect();
 
 if ( $g_system=='admin' ) {
-    include_once IR.'process/admin_session.process.php';
+    include_once IR.'processes/admin_session.process.php';
     if ( $admin_id==0 ) {
         $g_module='index';
         $g_action='login';
@@ -45,11 +45,11 @@ if ( $g_system=='admin' ) {
     if ( 0 ) {
         //if some module or action don't need session login, you can go here 
     } else {         
-        include_once IR.'process/session.process.php';
+        include_once IR.'processes/session.process.php';
         if ( $uid==0 ) {
             //show login
             $g_module='index';
-            $g_action='login';
+            //$g_action='login';
         }
     }
 }
@@ -94,6 +94,7 @@ if (isset($_REQUEST['h']) && ($_REQUEST['h']==1)) {
     
     //读取界面文件
     if ($g_view == PAGE) {
+		$v_title = 'Demo!';
         include_once(VR.$g_module.'/'.$g_action.'.php');
     } elseif ($g_view == HTML) {
         include_once(VR.$g_module.'/block/'.$g_action.'.php');

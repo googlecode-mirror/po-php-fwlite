@@ -1,6 +1,6 @@
 <?php
 include_once IR.'functions/common/cache_info.func.php';
-include_once IR.'functions/account/user_session.func.php';
+include_once IR.'functions/user/user_session.func.php';
 
 //先检查cookie
 if (isset($_COOKIE[$config['srv_id'].'SAL'])) {
@@ -21,7 +21,7 @@ if (isset($_COOKIE[$config['srv_id'].'SAL'])) {
 }
 
 if ($uid == 0){
-    return_no_login($g_view);
+//    return_no_login($g_view);
 }else{
 	if ($config['maintain_work']){
 		if(!in_array($uid,$config['maintain_super_uid']) ){
@@ -34,8 +34,7 @@ if ($uid == 0){
 			set_cookie(0, 0, 0);
 			return_no_login($g_view);
 		}
-		$g_user_base = user_get_user_base($uid);
-		$g_user_extend = user_get_user_extend($uid);		 
+		$g_user_base = user_get_user_base($uid);		 
 		$user_key = md5($uid.$public_key);
 		
 		//获得登录id，同步数据库session
@@ -45,18 +44,6 @@ if ($uid == 0){
 		$last_online_detail = $g_user_extend['last_online'];
 		$days_last_online = ($last_online_detail - $last_online_detail%86400)/86400;
 		$days_now_online = ($zeit - $zeit%86400)/86400;
-		//连续登录
-		if(($days_now_online - $days_last_online)==86400){
-			$ach_info = ach_get_value(2,$uid);
-			if(empty($ach_info)){
-				ach_new_ach(2,$uid,1);
-				ach_insert_value(2,$uid,1);
-			}else{
-				ach_update_value(2,$uid,$ach_info['value']);
-			}
-		}elseif(($days_now_online - $days_last_online)>86400){//可以归零了
-			ach_update_value(2,$uid,1);	
-	}
 	}
 }
 
