@@ -3,6 +3,7 @@
 *  index.php
 *  Controller for po-php-fwlite  框架核心路由文件
 *  Guo Jia(Anthemius, NJ.weihang@gmail.com)
+*  http://code.google.com/p/po-php-fwlite
 *
 *  Created by Guo Jia on 2008-3-12.
 *  Copyright 2008-2012 Guo Jia All rights reserved.
